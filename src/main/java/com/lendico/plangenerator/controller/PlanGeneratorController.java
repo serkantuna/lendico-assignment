@@ -21,15 +21,17 @@ public class PlanGeneratorController {
 
     @PostMapping(path = "/generate-plan")
     @ResponseBody
-    public ResponseEntity<List<Repayment>> generatePlan(@RequestBody LoanDetails loanDetails) {
+    public ResponseEntity<?> generatePlan(@RequestBody LoanDetails loanDetails) {
 
         try {
             List<Repayment> repaymentPlan = planGeneratorService.generatePlan(loanDetails);
             if (repaymentPlan == null || repaymentPlan.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
             }
 
             return ResponseEntity.ok(repaymentPlan);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }

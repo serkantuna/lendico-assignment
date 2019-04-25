@@ -23,10 +23,15 @@ public class PlanGeneratorService {
         List<Repayment> repaymentPlan = new ArrayList<>();
 
         BigDecimal initialOutstandingPrincipal = loanDetails.getLoanAmount().setScale(2);
+        if (initialOutstandingPrincipal.compareTo(new BigDecimal(0)) < 0) {
+            throw new IllegalArgumentException("Loan amount must be greater than 0");
+        }
+
         BigDecimal remainingOutstandingPrincipal = initialOutstandingPrincipal;
         ZonedDateTime repaymentDate = loanDetails.getStartDate();
 
-        BigDecimal principal, interest;
+        BigDecimal principal;
+        BigDecimal interest;
 
         for (int i = 0; i < loanDetails.getDuration() - 1; i++) {
             interest = calculateInterest(nominalRateInPercent, initialOutstandingPrincipal);
