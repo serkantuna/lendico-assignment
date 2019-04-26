@@ -27,7 +27,7 @@ public class PlanGeneratorServiceTest {
         List<Repayment> repaymentPlan = planGeneratorService.generatePlan(new LoanDetails(new BigDecimal("5000"), new BigDecimal("5.0"), 24, ZonedDateTime.parse("2018-01-01T00:00:01Z")));
 
         BigDecimal totalPayment = new BigDecimal(0);
-        for(Repayment repayment: repaymentPlan){
+        for (Repayment repayment : repaymentPlan) {
             totalPayment = repayment.getBorrowerPaymentAmount().add(totalPayment);
         }
 
@@ -39,7 +39,7 @@ public class PlanGeneratorServiceTest {
         List<Repayment> repaymentPlan = planGeneratorService.generatePlan(new LoanDetails(new BigDecimal("5000"), new BigDecimal("5.0"), 24, ZonedDateTime.parse("2018-01-01T00:00:01Z")));
 
         BigDecimal totalPrincipal = new BigDecimal(0);
-        for(Repayment repayment: repaymentPlan){
+        for (Repayment repayment : repaymentPlan) {
             totalPrincipal = repayment.getPrincipal().add(totalPrincipal);
         }
 
@@ -51,7 +51,7 @@ public class PlanGeneratorServiceTest {
         List<Repayment> repaymentPlan = planGeneratorService.generatePlan(new LoanDetails(new BigDecimal("5000"), new BigDecimal("5.0"), 24, ZonedDateTime.parse("2018-01-01T00:00:01Z")));
 
         BigDecimal totalInterest = new BigDecimal(0);
-        for(Repayment repayment: repaymentPlan){
+        for (Repayment repayment : repaymentPlan) {
             totalInterest = repayment.getInterest().add(totalInterest);
         }
 
