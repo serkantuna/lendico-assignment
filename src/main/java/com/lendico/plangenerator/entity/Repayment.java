@@ -28,4 +28,20 @@ public class Repayment {
         this.principal = principal;
         this.remainingOutstandingPrincipal = remainingOutstandingPrincipal;
     }
+
+    public BigDecimal getBorrowerPaymentAmount() {
+        return borrowerPaymentAmount;
+    }
+
+    public BigDecimal getInterest() {
+        return interest;
+    }
+
+    public BigDecimal getPrincipal() {
+        return principal;
+    }
+
+    public BigDecimal getRemainingOutstandingPrincipal() {
+        return remainingOutstandingPrincipal;
+    }
 }
